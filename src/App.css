@@ -1,0 +1,31 @@
+
+:root{
+  font-family: "Roboto", sans-serif;
+}
+/* Style for the entire header cell */
+.ag-theme-alpine .ag-header-cell {
+  background-color: black !important;
+  border-right-color: #555 !important; /* Optional: Adjust border color for better visibility on black */
+}
+
+/* Style for the header cell text label */
+.ag-theme-alpine .ag-header-cell-label .ag-header-cell-text {
+  color: white !important;
+}
+
+/* Style for header icons (e.g., sort, filter, menu) */
+.ag-theme-alpine .ag-header-icon,
+.ag-theme-alpine .ag-header-cell-menu-button, /* Targets the menu button */
+.ag-theme-alpine .ag-sort-indicator-icon { /* Targets sort indicators */
+  color: white !important;
+}
+
+/* Optional: Style for the header group cells if you use them */
+.ag-theme-alpine .ag-header-group-cell {
+  background-color: black !important;
+  border-right-color: #555 !important; /* Optional: Adjust border color */
+}
+.ag-theme-alpine .ag-header-group-text {
+  color: white !important;
+}
+
