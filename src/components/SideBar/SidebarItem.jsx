@@ -1,10 +1,12 @@
-import React from 'react';
-// This component represents a single item in the sidebar.
-// It can be a link or a button with an icon and text.
-export const SidebarItem = ({ icon, text, isOpen, active }) => {
+
+import { Link } from 'react-router-dom'; // 1. Import the Link component
+
+// 2. Add 'to' to the list of props the component accepts
+export const SidebarItem = ({ icon, text, isOpen, active, to = "#" }) => {
   return (
-    <a
-      href="#"
+    // 3. Replace the 'a' tag with the 'Link' component and use the 'to' prop
+    <Link
+      to={to}
       className={`
         flex items-center p-3 my-1 rounded-lg text-white transition-colors
         ${active ? 'bg-blue-600' : 'hover:bg-gray-700'}
@@ -19,6 +21,6 @@ export const SidebarItem = ({ icon, text, isOpen, active }) => {
       >
         {text}
       </span>
-    </a>
+    </Link>
   );
 };

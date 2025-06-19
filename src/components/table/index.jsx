@@ -53,8 +53,8 @@ ModuleRegistry.registerModules([AllEnterpriseModule]);
 // Grid wrapper styles
 const gridWrapperStyle = {
   height: '70vh',
-  width: '98%',
-  minWidth: '1200px',
+  width: '100%',
+  
 };
 
 export const AgGridTable = ({ 

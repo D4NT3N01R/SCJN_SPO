@@ -1,15 +1,12 @@
 import { Navigate, Outlet } from 'react-router-dom';
-
-const isAuthenticated = () => {
-  return localStorage.getItem('authenticated') !== null;
-};
+import { useAuth } from '../../utils/auth'; // adjust path accordingly
 
 export const ProtectedRoute = () => {
-  if (!isAuthenticated()) {
-    // If not authenticated, redirect to the login page
+  const { authenticated } = useAuth();
+
+  if (!authenticated) {
     return <Navigate to="/login" replace />;
   }
 
-  // If authenticated, render the child route content
   return <Outlet />;
 };

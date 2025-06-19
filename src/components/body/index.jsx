@@ -108,7 +108,8 @@ export function Body() {
   };
 
   return (
-    <div style={{...gridContainerStyle, backgroundColor: isDarkMode ? scjnBlack : scjnWhite }}>
+    <div 
+    style={{...gridContainerStyle, backgroundColor: isDarkMode ? scjnBlack : scjnWhite }}>
       <style>{`
         body.dark-mode-active { background-color: ${scjnDarkBlue}; color: ${scjnOffWhite}; }
         body.light-mode-active { background-color: ${scjnWhite}; color: ${scjnBlack}; }
@@ -150,13 +151,17 @@ export function Body() {
         <div>
           <button onClick={addRow}>Agregar Fila</button>
         </div>
+       
       </div>
-      <AgGridTable 
+        <AgGridTable 
+        
         isDarkMode={isDarkMode}
         rowData={rowData}
         columnDefs={columnDefs}
         onCellValueChanged={handleCellValueChanged}
       />
+     
     </div>
+    
   );
 }

@@ -1,42 +1,50 @@
 import { SidebarItem } from './SidebarItem';
-import { DropdownMenu } from '../buttons/DropdownMenu'; // We'll reuse this
+import { DropdownMenu } from '../buttons/DropdownMenu';
 import { mexicoStates } from '../../utils/states';
 
-// --- Example Icons (use a library like react-icons for better options) ---
+// --- Example Icons ---
 const HomeIcon = () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">...</svg>;
 const ChartIcon = () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">...</svg>;
-const StatesIcon = () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">...</svg>; // Icon for your states dropdown
+const StatesIcon = () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">...</svg>;
+
+// 1. Define the default state, just like in your other files
+
 
 export const Sidebar = ({ isOpen }) => {
   return (
-    // The main container's width changes based on the 'isOpen' prop
     <aside
       className={`
-        bg-black text-white flex flex-col
+        bg-black
+         text-white flex flex-col
         transition-all duration-300 ease-in-out
-        ${isOpen ? "w-46" : "w-1"}
+        ${isOpen ? "w-64" : "w-2"}
       `}
     >
-      <div className="flex items-center justify-center h-20 shadow-md">
-        {/* Show a full logo when open, and a smaller icon when closed */}
-        <h1 className={`text-xl font-bold transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>Estados</h1>
-        
-      </div>
+      {/* ... your sidebar header ... */}
 
       <nav className="flex-grow p-2">
-        <SidebarItem icon={<HomeIcon />} text="Inicio" isOpen={isOpen} active={true} />
-        <SidebarItem icon={<ChartIcon />} text="Estadísticas" isOpen={isOpen} />
+        {/* 2. Add the 'to' prop to the "Inicio" SidebarItem */}
+        <SidebarItem
+          icon={<HomeIcon />}
+          text="Inicio"
+          isOpen={isOpen}
+          active={true} // You might want to make 'active' dynamic based on the current URL
+          to={`/home`}
+        />
         
-        {/* --- Integrating your Dropdown --- */}
-        {/* The dropdown also needs to know if the sidebar is open */}
+        <SidebarItem
+            icon={<ChartIcon />}
+            text="Estadísticas"
+            isOpen={isOpen}
+            to="/estadisticas" // Example for another page
+        />
+        
         <div className="px-1 py-1">
           <DropdownMenu title="Estados" icon={<StatesIcon/>} items={mexicoStates} isOpen={isOpen} />
         </div>
       </nav>
       
-      <div className="p-2 border-t border-gray-700">
-        {/* You can have a user profile section here */}
-      </div>
+      {/* ... your other sidebar content ... */}
     </aside>
   );
 };

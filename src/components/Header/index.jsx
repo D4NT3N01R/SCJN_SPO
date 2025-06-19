@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { isAuthenticated } from "../../utils/auth";
+import { useAuth } from "../../utils/auth";
 import { useServerStatus } from "../../hooks/useServerStatus";
 import { ServerStatusIndicator } from "../ServerStatusIndicator";
 import { LogoutButton } from "../buttons/LogoutButton";
@@ -7,9 +7,10 @@ import logo from "../../assets/SCJN_NEG.png";
 export const Header = ({ isProcessing, onToggleSidebar }) => {
   const navigate = useNavigate();
   const { isLoading, statusText, statusColor, dotColor, processCount } = useServerStatus({ isProcessing });
+  const { authenticated, setAuthenticated } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem('authenticated');
+    setAuthenticated(false);
     navigate('/login');
   };
   const MenuIcon = () => (
@@ -19,16 +20,16 @@ export const Header = ({ isProcessing, onToggleSidebar }) => {
 );
 
   return (
-    <header className="bg-black text-white py-4 px-4 sm:px-10 flex items-center justify-between text-lg">
+    <header className="bg-black text-white  px-4 sm:px-10 flex items-center justify-between text-lg">
        {/* Left Side: Toggle, Logo, and Status */}
       <div className="flex items-center gap-4">
-        {/* --- YOUTUBE-STYLE TOGGLE BUTTON --- */}
+        {/* --- Sidebar TOGGLE BUTTON --- */}
         <button onClick={onToggleSidebar} className="p-2 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
           <MenuIcon />
         </button>
 
         <a href="https://www.scjn.gob.mx/" target='_blank' rel="noopener noreferrer">
-          <img src={logo} alt="Logo SCJN" className="h-12 sm:h-16" />
+          <img src={logo} alt="Logo SCJN" className="h-10  sm:h-10" />
         </a>
         <ServerStatusIndicator
           isLoading={isLoading}
@@ -42,7 +43,7 @@ export const Header = ({ isProcessing, onToggleSidebar }) => {
       {/* Right Side: Title and Logout */}
       <div className='flex items-center gap-4'>
         <h1 className='text-2xl font-bold'>SPO</h1>
-        {isAuthenticated() && <LogoutButton onLogout={handleLogout} />}
+        {authenticated && <LogoutButton onLogout={handleLogout} />}
       </div>
     </header>
   );

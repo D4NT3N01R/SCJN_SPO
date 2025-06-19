@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // A simple chevron icon for the dropdown
 const ChevronIcon = ({ isOpen }) => (
@@ -10,10 +11,19 @@ const ChevronIcon = ({ isOpen }) => (
 export const DropdownMenu = ({ title, icon, items, isOpen }) => {
   const [isPanelOpen, setPanelOpen] = useState(false);
 
+  const handleTogglePanel = () => {
+    setPanelOpen(!isPanelOpen);
+  };
+  
+  // Close the panel when a link is clicked
+  const handleLinkClick = () => {
+    setPanelOpen(false);
+  }
+
   return (
     <div className="relative w-full">
       <button
-        onClick={() => setPanelOpen(!isPanelOpen)}
+        onClick={handleTogglePanel}
         className="w-full flex items-center p-3 my-1 rounded-lg text-white hover:bg-gray-700 transition-colors"
       >
         {icon}
@@ -25,16 +35,20 @@ export const DropdownMenu = ({ title, icon, items, isOpen }) => {
         </div>
       </button>
 
-      {/* The dropdown panel itself is not affected by the sidebar's state */}
       {isPanelOpen && (
-        <div className="mt-1 bg-gray-800 rounded-md shadow-lg overflow-y-auto max-h-60">
-          {/* Add a little padding only when sidebar is open */}
+        <div className="mt-1 bg-[#404040] rounded-md shadow-lg overflow-y-auto max-h-60 custom-scrollbar">
           <ul className={isOpen ? "pl-6" : ""}>
             {items.map((item) => (
               <li key={item}>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-300 hover:bg-blue-500 hover:text-white">
+                {/* The key change is here: Use <Link> to navigate to the dynamic URL.
+                */}
+                <Link
+                  to={`/estado/${encodeURIComponent(item)}`}
+                  onClick={handleLinkClick}
+                  className="block px-4 py-2 text-sm text-gray-300 hover:bg-blue-500 hover:text-white"
+                >
                   {item}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
