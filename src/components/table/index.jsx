@@ -52,7 +52,8 @@ ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 // Grid wrapper styles
 const gridWrapperStyle = {
-  height: '70vh',
+  flex: '1 1 auto',
+  height: '100%',
   width: '100%',
   
 };
@@ -69,7 +70,6 @@ export const AgGridTable = ({
     filter: true,
     editable: true,
     wrapText: true,
-    autoHeight: true,
     cellStyle: { 
       display: 'flex',
       alignItems: 'center',
@@ -139,6 +139,7 @@ export const AgGridTable = ({
                 suppressColumnFilter: false,
                 suppressColumnSelectAll: false,
                 suppressColumnExpandAll: false,
+                suppressMenuHide:false
               },
             },
             {
@@ -151,11 +152,11 @@ export const AgGridTable = ({
           ],
           defaultToolPanel: 'columns',
         }}
-        pivotMode={true}
+        // pivotMode={true}
         rowGroupPanelShow={'always'}
         pivotPanelShow={'always'}
         suppressHorizontalScroll={false}
-        domLayout='autoHeight'
+        
         headerHeight={40}
         rowHeight={35}
         suppressColumnVirtualisation={true}

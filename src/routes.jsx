@@ -18,6 +18,7 @@ const AppRoutes = () => {
         <Route element={<PaginaBase />}>
           <Route path="/home" element={<Home />} />
           <Route path="/estado/:stateName" element={<Body />} />
+          
         </Route>
       </Route>
       <Route path="/" element={

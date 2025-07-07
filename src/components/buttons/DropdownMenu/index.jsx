@@ -27,7 +27,7 @@ export const DropdownMenu = ({ title, icon, items, isOpen }) => {
         className="w-full flex items-center p-3 my-1 rounded-lg text-white hover:bg-gray-700 transition-colors"
       >
         {icon}
-        <span className={`overflow-hidden transition-all ${isOpen ? "w-32 ml-3" : "w-0"}`}>
+        <span className={`overflow-hidden transition-all ${isOpen ? " ml-3" : "w-0"}`}>
           {title}
         </span>
         <div className={`transition-all ${isOpen ? 'ml-auto' : 'w-0 overflow-hidden'}`}>
@@ -40,7 +40,7 @@ export const DropdownMenu = ({ title, icon, items, isOpen }) => {
           <ul className={isOpen ? "pl-6" : ""}>
             {items.map((item) => (
               <li key={item}>
-                {/* The key change is here: Use <Link> to navigate to the dynamic URL.
+                {/* The important thing to navigate is here : Use <Link> to navigate to the dynamic URL.
                 */}
                 <Link
                   to={`/estado/${encodeURIComponent(item)}`}

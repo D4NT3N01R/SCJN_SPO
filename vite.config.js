@@ -6,4 +6,10 @@ import tailwindScrollbar from 'tailwind-scrollbar'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),tailwindcss()],
+  server: {
+    watch: {
+      // Exclude db.json from Vite's file watcher
+      ignored: ['**/db.json'],
+    },
+  },
 })

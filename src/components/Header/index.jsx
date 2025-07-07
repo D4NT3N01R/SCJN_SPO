@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/auth";
-import { useServerStatus } from "../../hooks/useServerStatus";
-import { ServerStatusIndicator } from "../ServerStatusIndicator";
+// import { useServerStatus } from "../../hooks/useServerStatus";
+// import { ServerStatusIndicator } from "../ServerStatusIndicator";
 import { LogoutButton } from "../buttons/LogoutButton";
 import logo from "../../assets/SCJN_NEG.png";
 export const Header = ({ isProcessing, onToggleSidebar }) => {
   const navigate = useNavigate();
-  const { isLoading, statusText, statusColor, dotColor, processCount } = useServerStatus({ isProcessing });
+  // const { isLoading, statusText, statusColor, dotColor, processCount } = useServerStatus({ isProcessing });
   const { authenticated, setAuthenticated } = useAuth();
 
   const handleLogout = () => {
@@ -31,13 +31,13 @@ export const Header = ({ isProcessing, onToggleSidebar }) => {
         <a href="https://www.scjn.gob.mx/" target='_blank' rel="noopener noreferrer">
           <img src={logo} alt="Logo SCJN" className="h-10  sm:h-10" />
         </a>
-        <ServerStatusIndicator
+        {/* <ServerStatusIndicator
           isLoading={isLoading}
           statusText={statusText}
           statusColor={statusColor}
           dotColor={dotColor}
           processCount={processCount}
-        />
+        /> */}
       </div>
 
       {/* Right Side: Title and Logout */}
