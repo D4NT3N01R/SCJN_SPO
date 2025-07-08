@@ -5,6 +5,7 @@ import PaginaBase from './pages/paginaBase';
 import { Home } from './pages/Home';
 import { ProtectedRoute } from './components/protectedRoute';
 import { Body } from './components/body';
+import { MexicoMap } from './components/map/MexicoMap';
 
 const AppRoutes = () => {
   const { authenticated } = useAuth(); //  hook dentro del componente
@@ -18,7 +19,7 @@ const AppRoutes = () => {
         <Route element={<PaginaBase />}>
           <Route path="/home" element={<Home />} />
           <Route path="/estado/:stateName" element={<Body />} />
-          
+          <Route path="/arañas" element={<MexicoMap />} />
         </Route>
       </Route>
       <Route path="/" element={

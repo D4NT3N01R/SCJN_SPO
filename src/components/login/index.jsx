@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import  {useAuth } from '../../utils/auth'; // Adjust the path as necessary
+import  {useAuth } from '../../utils/auth'; 
 
 // Define the default state to navigate to after login.
 // This should match the default state in your AppRoutes.jsx file.

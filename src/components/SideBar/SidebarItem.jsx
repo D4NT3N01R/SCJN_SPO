@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'; // 1. Import the Link component
 // 2. Add 'to' to the list of props the component accepts
 export const SidebarItem = ({ icon, text, isOpen, active, to = "#" }) => {
   return (
-    // 3. Replace the 'a' tag with the 'Link' component and use the 'to' prop
+    
     <Link
       to={to}
       className={`

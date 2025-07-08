@@ -4,7 +4,7 @@ import { mexicoStates } from '../../utils/states';
 
 
 
-// 1. Define the default state, just like in your other files
+// 1. Define the default states
 
 
 export const Sidebar = ({ isOpen }) => {
@@ -17,7 +17,7 @@ export const Sidebar = ({ isOpen }) => {
         ${isOpen ? "w-49" : "w-2"}
       `}
     >
-      {/* ... your sidebar header ... */}
+      
 
       <nav className="flex-grow p-2">
         {/* 2. Add the 'to' prop to the "Inicio" SidebarItem */}
@@ -25,7 +25,7 @@ export const Sidebar = ({ isOpen }) => {
          
           text="Inicio"
           isOpen={isOpen}
-          active={true} // You might want to make 'active' dynamic based on the current URL
+          active={true} 
           to={`/home`}
         />
         
@@ -33,7 +33,7 @@ export const Sidebar = ({ isOpen }) => {
             
             text="Consulta de periodicos"
             isOpen={isOpen}
-            to="/arañas" // Example for another page
+            to="/arañas" // Example for arañas page (maybe)
         />
         
           
@@ -41,7 +41,7 @@ export const Sidebar = ({ isOpen }) => {
         
       </nav>
       
-      {/* ... your other sidebar content ... */}
+      
     </aside>
   );
 };

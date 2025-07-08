@@ -1,7 +1,7 @@
 {
   "periodicos": [
     {
-      "id": 1,
+      "id": "1",
       "estado": "Jalisco",
       "AÑO": "2023",
       "MES": "Marzo",
@@ -24,7 +24,7 @@
       "Validez": ""
     },
     {
-      "id": 1,
+      "id": "1",
       "estado": "Jalisco",
       "AÑO": "2024",
       "MES": "Diciembre",
@@ -254,8 +254,8 @@
       "Validez": "Electrónica"
     },
     {
-      "id": "4040",
-      "estado": "Chihuahua",
+      "id": "5d2e",
+      "estado": "Ciudad de México",
       "AÑO": "",
       "MES": "",
       "Dia": "",
@@ -277,9 +277,32 @@
       "Validez": "Electrónica"
     },
     {
-      "id": "5d2e",
-      "estado": "Ciudad de México",
+      "id": "e23a",
+      "estado": "Baja California",
       "AÑO": "",
+      "MES": "",
+      "Dia": "12",
+      "num_periodico": "",
+      "seccion": "",
+      "falta_po": "",
+      "tomo": "",
+      "turno": "",
+      "ordenamiento": "",
+      "id_SILS": "",
+      "fecha_ingreso_cdaacl": "",
+      "fecha_ingreso_departamento": "",
+      "hora_departamento": "",
+      "fecha_consulta_web": "",
+      "hora_consult_web": "",
+      "observaciones": "",
+      "mes_informe": "",
+      "PDF": "NO",
+      "Validez": "Electrónica"
+    },
+    {
+      "id": "b959",
+      "estado": "Tlaxcala",
+      "AÑO": "2023",
       "MES": "",
       "Dia": "",
       "num_periodico": "",
