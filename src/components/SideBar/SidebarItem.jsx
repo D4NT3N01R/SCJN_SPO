@@ -1,26 +1,38 @@
+import { Link } from 'react-router-dom';
 
-import { Link } from 'react-router-dom'; // 1. Import the Link component
-
-// 2. Add 'to' to the list of props the component accepts
-export const SidebarItem = ({ icon, text, isOpen, active, to = "#" }) => {
+export const SidebarItem = ({ icon, text, isOpen, active, to = "#", isDarkMode }) => {
   return (
-    
-    <Link
-      to={to}
-      className={`
-        flex items-center p-3 my-1 rounded-lg text-white transition-colors
-        ${active ? 'bg-blue-600' : 'hover:bg-gray-700'}
-      `}
-    >
-      {icon}
-      <span
+    <li>
+      <Link
+        to={to}
+        title={!isOpen ? text : ''}
         className={`
-          overflow-hidden transition-all
-          ${isOpen ? "w-40 ml-3" : "w-0"}
+          flex items-center p-3 my-1 rounded-lg text-sm font-medium transition-colors
+          ${isOpen ? '' : 'justify-center'}
+          ${active
+            ? isDarkMode
+              ? 'bg-blue-900'
+              : 'bg-blue-100'
+            : isDarkMode
+              ? 'hover:bg-gray-700'
+              : 'hover:bg-gray-100'
+          }
         `}
       >
-        {text}
-      </span>
-    </Link>
+        {/* Icono adaptado al modo */}
+      <span className={isDarkMode ? 'text-white' : 'text-black'}>
+          {icon}
+        </span>
+        <span
+          className={`
+            overflow-hidden transition-all whitespace-nowrap
+            ${isOpen ? "w-40 ml-3" : "w-0"}
+            ${isDarkMode ? "text-white" : "text-black"}
+          `}
+        >
+          {text}
+        </span>
+      </Link>
+    </li>
   );
 };

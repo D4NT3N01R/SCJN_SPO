@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { AgGridTable } from '../table';
-import { useParams } from 'react-router-dom';
+import { useParams, useOutletContext } from 'react-router-dom';
 import { DeleteButtonRenderer } from '../buttons/deletebutton';
 
 // SCJN Institutional Colors (from guide)
@@ -23,7 +23,7 @@ const gridContainerStyle = {
 
 export function Body() {
   const {stateName} = useParams(); // Get the state name from the URL parameters
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { isDarkMode } = useOutletContext?.() || {};
   
   const [columnDefs, setColumnDefs] = useState([
      {
@@ -164,27 +164,6 @@ const handleCellValueChanged = useCallback(async (event) => {
     }
 }, []);
 
-  const applyDarkModePreference = useCallback((enabled) => {
-    document.body.dataset.agThemeMode = enabled ? "dark-scjn" : "light-scjn";
-    if (enabled) {
-      document.body.classList.add('dark-mode-active');
-      document.body.classList.remove('light-mode-active');
-    } else {
-      document.body.classList.add('light-mode-active');
-      document.body.classList.remove('dark-mode-active');
-    }
-  }, []);
-
-  useEffect(() => {
-    applyDarkModePreference(isDarkMode);
-  }, [isDarkMode, applyDarkModePreference]);
-
-  useEffect(() => {
-    applyDarkModePreference(isDarkMode); 
-  }, []); 
-
-
-
   return (
     <div 
     style={{...gridContainerStyle, backgroundColor: isDarkMode ? scjnBlack : scjnWhite }}>
@@ -223,12 +202,6 @@ const handleCellValueChanged = useCallback(async (event) => {
         flexWrap: 'wrap', 
         gap: '10px' 
       }}>
-        <div>
-          <label>
-            Dark Mode (SCJN Colors):{" "}
-            <input type="checkbox" checked={isDarkMode} onChange={(e) => setIsDarkMode(e.target.checked)} />
-          </label>
-        </div>
         <div>
           <button type="button" onClick={(e) => {e.preventDefault(); addRow();}}>Agregar Fila</button>
         </div>

@@ -1,49 +1,74 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/auth";
-// import { useServerStatus } from "../../hooks/useServerStatus";
-// import { ServerStatusIndicator } from "../ServerStatusIndicator";
-import { LogoutButton } from "../buttons/LogoutButton";
-import logo from "../../assets/SCJN_NEG.png";
-export const Header = ({ isProcessing, onToggleSidebar }) => {
+import logo from "../../assets/SCJN_NEG.svg";
+import React, { useState, useRef, useEffect } from "react";
+
+export const Header = ({ isDarkMode, toggleDarkMode }) => {
   const navigate = useNavigate();
-  // const { isLoading, statusText, statusColor, dotColor, processCount } = useServerStatus({ isProcessing });
-  const { authenticated, setAuthenticated } = useAuth();
+  const { authenticated, setAuthenticated, user } = useAuth();
+  const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef(null);
 
   const handleLogout = () => {
     setAuthenticated(false);
     navigate('/login');
   };
-  const MenuIcon = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-  </svg>
-);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <header className="bg-black text-white  px-4 sm:px-10 flex items-center justify-between text-lg">
-       {/* Left Side: Toggle, Logo, and Status */}
+    <header className={`${isDarkMode ? "bg-[#202020] text-white" : "bg-white text-black"} px-4 sm:px-10 flex items-center justify-between text-lg relative`}>
       <div className="flex items-center gap-4">
-        {/* --- Sidebar TOGGLE BUTTON --- */}
-        <button onClick={onToggleSidebar} className="p-2 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-          <MenuIcon />
-        </button>
-
         <a href="https://www.scjn.gob.mx/" target='_blank' rel="noopener noreferrer">
-          <img src={logo} alt="Logo SCJN" className="h-10  sm:h-10" />
+          <img
+            src={logo}
+            alt="Logo SCJN"
+            className="h-10 sm:h-10"
+            style={{
+              filter: isDarkMode ? "none" : "invert(1)",
+              transition: "filter 0.2s"
+            }}
+          />
         </a>
-        {/* <ServerStatusIndicator
-          isLoading={isLoading}
-          statusText={statusText}
-          statusColor={statusColor}
-          dotColor={dotColor}
-          processCount={processCount}
-        /> */}
       </div>
-
-      {/* Right Side: Title and Logout */}
       <div className='flex items-center gap-4'>
         <h1 className='text-2xl font-bold'>SPO</h1>
-        {authenticated && <LogoutButton onLogout={handleLogout} />}
+        {authenticated && (
+          <div className="relative" ref={menuRef}>
+            <button
+              className={`rounded-full w-10 h-10 flex items-center justify-center focus:outline-none ${isDarkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-black"}`}
+              onClick={() => setShowMenu((v) => !v)}
+              title={user?.username || "Usuario"}
+            >
+              <span className="font-bold">{user?.username?.[0]?.toUpperCase() || "U"}</span>
+            </button>
+            {showMenu && (
+              <div className={`absolute right-0 mt-2 w-48 rounded shadow-lg z-50 py-2 ${isDarkMode ? "bg-[#202020] text-white" : "bg-white text-black"}`}>
+                <div className={`px-4 py-2 border-b ${isDarkMode ? "border-gray-700" : "border-gray-200"}`}>{user?.username || "Usuario"}</div>
+                <button
+                  className={`w-full text-left px-4 py-2 hover:${isDarkMode ? "bg-gray-700" : "bg-gray-100"}`}
+                  onClick={toggleDarkMode}
+                >
+                  {isDarkMode ? "Desactivar Dark Mode" : "Activar Dark Mode"}
+                </button>
+                <button
+                  className={`w-full text-left px-4 py-2 hover:${isDarkMode ? "bg-gray-700" : "bg-gray-100"}`}
+                  onClick={handleLogout}
+                >
+                  Cerrar sesión
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </header>
   );

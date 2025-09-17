@@ -1,5 +1,5 @@
-import logo from '../../assets/SCJN_NEG.png';
-// import './styles.css'
+// import logo from '../../assets/SCJN_NEG.png';
+// // import './styles.css'
 export const Footer = ()=>{
     return(
         

@@ -2,32 +2,38 @@ import { Outlet } from "react-router-dom";
 import { Footer } from "../../components/footer";
 import { Header } from "../../components/Header";
 import { Sidebar } from '../../components/SideBar';
-import { useState } from "react";
- 
+import { useState, useEffect } from "react";
+
 const PaginaBase = () => {
-    const [isProcessing] = useState(false);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Default to open
-    const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-    };
-    return (
-        
-         <div className="flex h-screen bg-gray-100">
-      {/* Pass the state and toggle function to the Sidebar */}
-      <Sidebar isOpen={isSidebarOpen} />
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-      {/* Main Content Area */}
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const toggleDarkMode = () => setIsDarkMode((prev) => !prev);
+
+  // Aplica la clase global para dark mode
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode-active');
+      document.body.classList.remove('light-mode-active');
+    } else {
+      document.body.classList.add('light-mode-active');
+      document.body.classList.remove('dark-mode-active');
+    }
+  }, [isDarkMode]);
+
+  return (
+    <div className={`flex h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-blue-50'}`}>
+      <Sidebar isOpen={isSidebarOpen} isDarkMode={isDarkMode} onToggleSidebar={toggleSidebar} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Pass the toggle function to the Header */}
-        <Header onToggleSidebar={toggleSidebar} isProcessing={isProcessing} />
-
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-6">
-          <Outlet />
+        <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+        <main className="flex-1 overflow-x-hidden overflow-y-auto p-0.4 custom-scrollbar_main ">
+          <Outlet context={{ isDarkMode }} />
         </main>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     </div>
-    );
+  );
 };
 
 export default PaginaBase;
