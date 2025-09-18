@@ -1,4 +1,4 @@
-# SCJN-SPOLa
+# SCJN-SPO
 
 La página en desarrollo del DCL, con el fin de facilitar la captura y consulta de datos de las publicaciones de los estados a los que le pertenece cada compilador. La aplicación tiene las bases de proponer componentes de datos interactivos y una estructura modular para la facilidad del mantenimiento y futuras expansiones.
 
