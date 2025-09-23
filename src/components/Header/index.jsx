@@ -36,7 +36,7 @@ export const Header = ({ isDarkMode, toggleDarkMode }) => {
             alt="Logo SCJN"
             className="h-10 sm:h-10"
             style={{
-              filter: isDarkMode ? "none" : "invert(1)",
+              filter: isDarkMode ? "invert(1)" : "none",
               transition: "filter 0.2s"
             }}
           />

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate,useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import {
   ComposableMap,
   Geographies,
@@ -15,7 +15,6 @@ export const MexicoMap = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
   const { isDarkMode } = useOutletContext() || {};
-  
 
   // 2. hover updated to handler the capture of the mouse event
   const handleMouseMove = (geo, event) => {
@@ -28,7 +27,7 @@ export const MexicoMap = () => {
   const handleMouseLeave = () => {
     setTooltipContent('');
   };
-  
+
   const handleStateClick = (geo) => {
     const stateName = geo.properties.state_name;
     navigate(`/estado/${stateName}`);
@@ -37,7 +36,7 @@ export const MexicoMap = () => {
   return (
     <div style={{ margin: 'auto', width: '90%', border: 'none' }}>
       <h1 className={`${isDarkMode ? 'text-white' : 'text-black'}`} >Consulta de Scrapers por Estado</h1>
-      
+
       {/* 4. The tooltip now uses the mousePosition state for its 'top' and 'left' styles */}
       {tooltipContent && (
         <div style={{
@@ -45,7 +44,7 @@ export const MexicoMap = () => {
           top: mousePosition.y,
           left: mousePosition.x,
           // This transform adds a small offset so the tooltip doesn't cover the cursor
-          transform: 'translate(15px, -25px)', 
+          transform: 'translate(15px, -25px)',
           background: 'rgba(0,0,0,0.8)',
           color: 'white',
           padding: '4px 8px',
@@ -74,9 +73,18 @@ export const MexicoMap = () => {
                   onMouseLeave={handleMouseLeave}
                   onClick={() => handleStateClick(geo)}
                   style={{
-                    default: { fill: "#2f084d", stroke: "#5c327d", strokeWidth: 0.1, outline: "none" },
-                    hover: { fill: "#801b65", stroke: "#FFFFFF", strokeWidth: 0.2, outline: "none" },
-                    
+                    default: {
+                      fill: isDarkMode ? "#0d3694" : "#6D378C",
+                      stroke: isDarkMode ? "#616161" : "#383047",
+                      strokeWidth: 0.1,
+                      outline: "none"
+                    },
+                    hover: {
+                      fill: isDarkMode ? "#dcdcdc" : "#801b65",
+                      stroke: isDarkMode ? "#f5f5f5" : "#FFFFFF",
+                      strokeWidth: 0.2,
+                      outline: "none"
+                    },
                   }}
                 />
               ))
