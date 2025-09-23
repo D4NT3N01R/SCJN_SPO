@@ -26,8 +26,9 @@ try {
     formatDate = (date) => new Date(date).toLocaleString();
   }
 }
-
+// Componente RecentJobsList que muestra una lista de trabajos recientes en el dashboard
 const RecentJobsList = ({ jobs, isDarkMode }) => {
+  // Renderizado del componente RecentJobsList
   return (
     <div className={isDarkMode ? "bg-gray-800 shadow rounded-lg" : "bg-white shadow rounded-lg"}>
       <div className={`px-6 py-4 border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>

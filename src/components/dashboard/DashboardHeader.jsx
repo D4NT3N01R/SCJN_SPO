@@ -1,3 +1,4 @@
+// Componente DashboardHeader que muestra el encabezado del dashboard con título y subtítulo
 const DashboardHeader = ({ isDarkMode }) => {
   return (
     <div>

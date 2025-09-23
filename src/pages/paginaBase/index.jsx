@@ -3,7 +3,7 @@ import { Footer } from "../../components/footer";
 import { Header } from "../../components/Header";
 import { Sidebar } from '../../components/SideBar';
 import { useState, useEffect } from "react";
-
+// Componente PaginaBase que sirve como estructura principal de la aplicación
 const PaginaBase = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -21,7 +21,7 @@ const PaginaBase = () => {
       document.body.classList.remove('dark-mode-active');
     }
   }, [isDarkMode]);
-
+  // Renderizado del componente PaginaBase
   return (
     <div className={`flex h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-blue-50'}`}>
       <Sidebar isOpen={isSidebarOpen} isDarkMode={isDarkMode} onToggleSidebar={toggleSidebar} />

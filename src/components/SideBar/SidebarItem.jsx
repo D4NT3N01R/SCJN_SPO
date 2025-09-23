@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+// Componente SidebarItem que representa un elemento individual en la barra lateral
 export const SidebarItem = ({ icon, text, isOpen, active, to = "#", isDarkMode }) => {
   return (
     <li>

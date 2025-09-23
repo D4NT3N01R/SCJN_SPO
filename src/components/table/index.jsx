@@ -118,6 +118,7 @@ export const AgGridTable = ({
         }
       `}</style>
       
+       {/* AgGridReact component */}
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}

@@ -6,6 +6,7 @@ import { Home } from './pages/Home';
 import { ProtectedRoute } from './components/protectedRoute';
 import { Body } from './components/body';
 import { MexicoMap } from './components/map/MexicoMap';
+import { StateListPage } from './pages/StateListPage'; // <-- Nueva importación
 
 const AppRoutes = () => {
   const { authenticated } = useAuth(); //  hook dentro del componente
@@ -19,7 +20,11 @@ const AppRoutes = () => {
         <Route element={<PaginaBase />}>
           <Route path="/home" element={<Home />} />
           <Route path="/estado/:stateName" element={<Body />} />
-          <Route path="/arañas" element={<MexicoMap />} />
+          {/* Rutas anidadas para consulta */}
+          <Route path="/consulta">
+            <Route path="mapa" element={<MexicoMap />} />
+            <Route path="lista-estados" element={<StateListPage />} />
+          </Route>
         </Route>
       </Route>
       <Route path="/" element={

@@ -1,6 +1,6 @@
 import { Activity, CheckCircle, XCircle, Play } from 'lucide-react';
 import React from 'react';
-// Ya no necesitamos tu hook useAuth en esta página, 
+// Ya necesitamos hook useAuth en esta página, 
 // porque el saludo es genérico. 
 // La protección de la ruta se encargará de la autenticación.
 
@@ -13,6 +13,7 @@ import DashboardSkeleton from '../../components/dashboard/DashboardLoad';
 import { useOutletContext } from 'react-router-dom'; // <-- Importa el hook
 
 // --- Datos de prueba para que el dashboard se vea bien ---
+
 const mockStats = {
   total_jobs: 125,
   completed_jobs: 110,
@@ -29,7 +30,7 @@ export const Home = () => {
   const { isDarkMode } = useOutletContext() || {}; // <-- Obtén el estado de dark mode
 
   // Para este componente visual, no necesitamos llamar a useAuth()
-  // ya que tu componente <ProtectedRoute> se encargará de verificar
+  // ya que el componente <ProtectedRoute> se encargará de verificar
   // si el usuario puede o no ver esta página.
   
   // Mantenemos la lógica de carga con datos de prueba

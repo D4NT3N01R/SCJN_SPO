@@ -116,29 +116,6 @@
       "Validez": "Electrónica"
     },
     {
-      "id": "0d81",
-      "estado": "Chiapas",
-      "AÑO": "2025",
-      "MES": "julio",
-      "Dia": "7",
-      "num_periodico": "",
-      "seccion": "",
-      "falta_po": "No",
-      "tomo": "",
-      "turno": "",
-      "ordenamiento": "",
-      "id_SILS": "",
-      "fecha_ingreso_cdaacl": "7/7/2025",
-      "fecha_ingreso_departamento": "7/7/2025",
-      "hora_departamento": "10:35:46 a.m.",
-      "fecha_consulta_web": "7/7/2025",
-      "hora_consult_web": "10:35:46 a.m.",
-      "observaciones": "Nueva fila",
-      "mes_informe": "",
-      "PDF": "NO",
-      "Validez": "Electrónica"
-    },
-    {
       "id": "9418",
       "estado": "Chiapas",
       "AÑO": "2025",
@@ -186,7 +163,7 @@
     },
     {
       "id": "d924",
-      "estado": "Chiapas",
+      "estado": "Estado de México",
       "AÑO": "2025",
       "MES": "julio",
       "Dia": "7",

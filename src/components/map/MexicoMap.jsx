@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useOutletContext } from 'react-router-dom';
 import {
   ComposableMap,
   Geographies,
@@ -14,6 +14,8 @@ export const MexicoMap = () => {
   // 1. Add new state to track the mouse's X and Y position
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
+  const { isDarkMode } = useOutletContext() || {};
+  
 
   // 2. hover updated to handler the capture of the mouse event
   const handleMouseMove = (geo, event) => {
@@ -34,7 +36,7 @@ export const MexicoMap = () => {
 
   return (
     <div style={{ margin: 'auto', width: '90%', border: 'none' }}>
-      <h1>Consulta de Scrapers por Estado</h1>
+      <h1 className={`${isDarkMode ? 'text-white' : 'text-black'}`} >Consulta de Scrapers por Estado</h1>
       
       {/* 4. The tooltip now uses the mousePosition state for its 'top' and 'left' styles */}
       {tooltipContent && (

@@ -1,3 +1,4 @@
+// Componente DashboardSkeleton que muestra un esqueleto de carga para el dashboard
 const DashboardSkeleton = ({ isDarkMode }) => {
   return (
     <div className="space-y-6 animate-pulse">

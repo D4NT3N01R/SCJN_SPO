@@ -2,18 +2,20 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/auth";
 import logo from "../../assets/SCJN_NEG.svg";
 import React, { useState, useRef, useEffect } from "react";
+// Componente Header que muestra el logo, el nombre del sistema y el menú de usuario
 
 export const Header = ({ isDarkMode, toggleDarkMode }) => {
   const navigate = useNavigate();
   const { authenticated, setAuthenticated, user } = useAuth();
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
-
+ // Función para manejar el cierre de sesión
   const handleLogout = () => {
+    // Aquí puedes agregar lógica adicional si es necesario, como limpiar tokens, etc.
     setAuthenticated(false);
     navigate('/login');
   };
-
+  // Cerrar el menú al hacer clic fuera de él              
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -23,8 +25,9 @@ export const Header = ({ isDarkMode, toggleDarkMode }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
+  // Renderizado del componente Header
   return (
+    // Header con estilos condicionales según el modo oscuro
     <header className={`${isDarkMode ? "bg-[#202020] text-white" : "bg-white text-black"} px-4 sm:px-10 flex items-center justify-between text-lg relative`}>
       <div className="flex items-center gap-4">
         <a href="https://www.scjn.gob.mx/" target='_blank' rel="noopener noreferrer">

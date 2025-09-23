@@ -1,3 +1,5 @@
+
+// Componente StatsCard que muestra una tarjeta de estadísticas con título, valor e ícono
 const StatsCard = ({ title, value, icon: Icon, color, isDarkMode }) => {
   return (
     <div className={isDarkMode ? "bg-gray-800 overflow-hidden shadow rounded-lg" : "bg-white overflow-hidden shadow rounded-lg"}>

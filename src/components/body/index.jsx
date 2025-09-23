@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { AgGridTable } from '../table';
-import { useParams, useOutletContext } from 'react-router-dom';
+import { useParams, useOutletContext, useNavigate } from 'react-router-dom'; // <-- Se agregó useNavigate
 import { DeleteButtonRenderer } from '../buttons/deletebutton';
+import { ArrowLeft } from 'lucide-react'; // <-- Icono para el botón
 
-// SCJN Institutional Colors (from guide)
+// ... (SCJN Institutional Colors y gridContainerStyle se mantienen igual)
 const scjnBlack = "#1D1D1B";
 const scjnDarkBlue = "#003A70";
 const scjnLightBlue = "#7DA1C4";
@@ -21,11 +22,14 @@ const gridContainerStyle = {
   width: '100%', // Asegura que ocupe todo el ancho disponible
 };
 
+
 export function Body() {
-  const {stateName} = useParams(); // Get the state name from the URL parameters
+  const {stateName} = useParams();
   const { isDarkMode } = useOutletContext?.() || {};
-  
-  const [columnDefs, setColumnDefs] = useState([
+  const navigate = useNavigate(); // <-- Hook para la navegación
+
+  // ... (el estado de columnDefs y rowData se mantiene igual)
+    const [columnDefs, setColumnDefs] = useState([
      {
     headerClass:'actions-column-header',
     width: 80,
@@ -65,9 +69,8 @@ export function Body() {
     { field: 'Validez', headerName: 'Validez', filter: true, enableRowGroup: true, enablePivot: true, width: 80 },
   
   ]);
-
   const [rowData, setRowData] = useState([]);
-
+  // ... (useEffect, addRow, deleteRow, handleCellValueChanged se mantienen igual)
 
   useEffect(() => {
     // If there's no stateName in the URL, don't fetch anything.
@@ -163,11 +166,10 @@ const handleCellValueChanged = useCallback(async (event) => {
       // Here you could add logic to revert the change in the UI if the server update fails.
     }
 }, []);
-
   return (
-    <div 
-    style={{...gridContainerStyle, backgroundColor: isDarkMode ? scjnBlack : scjnWhite }}>
-      <style>{`
+    <div style={{...gridContainerStyle, backgroundColor: isDarkMode ? scjnBlack : scjnWhite }}>
+      {/* ... (el bloque <style> se mantiene igual) */}
+       <style>{`
         body.dark-mode-active { background-color: ${scjnDarkBlue}; color: ${scjnOffWhite}; }
         body.light-mode-active { background-color: ${scjnWhite}; color: ${scjnBlack}; }
         .controls-container label { color: ${isDarkMode ? scjnOffWhite : scjnBlack}; }
@@ -195,17 +197,20 @@ const handleCellValueChanged = useCallback(async (event) => {
       <div className="controls-container" style={{ 
         marginBottom: '20px', 
         width: '95%', 
-        maxWidth: 'none', // Permite que los controles ocupen más espacio
         display: 'flex', 
         justifyContent: 'space-between', 
-        alignItems: 'center', 
-        flexWrap: 'wrap', 
-        gap: '10px' 
+        alignItems: 'center' 
       }}>
-        <div>
-          <button type="button" onClick={(e) => {e.preventDefault(); addRow();}}>Agregar Fila</button>
-        </div>
-       
+        <button
+          onClick={() => navigate('/consulta/lista-estados')}
+          className="flex items-center"
+        >
+          <ArrowLeft size={20} className="mr-2" />
+          Regresar
+        </button>
+        <button type="button" onClick={addRow}>Agregar Fila</button>
+      </div>
+      
       <div style={{ height: '80vh', width: '95%' }}>
         <AgGridTable
           isDarkMode={isDarkMode}
@@ -213,11 +218,7 @@ const handleCellValueChanged = useCallback(async (event) => {
           columnDefs={columnDefs}
           onCellValueChanged={handleCellValueChanged}
         />
-     
       </div>
     </div>
-  </div>
-    
-    
   );
 }

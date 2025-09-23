@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import { TrendingUp, Users, FileText } from 'lucide-react';
 
+// Componente QuickActions que muestra acciones rápidas en el dashboard
 const QuickActions = ({ isDarkMode }) => {
   const actions = [
     { to: "/services", icon: TrendingUp, title: "Ejecutar Servicio", text: "Ejecutar un servicio Python", color: "text-primary-600" },
     { to: "/files", icon: FileText, title: "Gestionar Archivos", text: "Subir o descargar archivos", color: "text-green-600" },
     { to: "/jobs", icon: Users, title: "Ver Trabajos", text: "Monitorear ejecuciones", color: "text-blue-600" },
   ];
-
+// Renderizado del componente QuickActions
   return (
     <div className={isDarkMode ? "bg-gray-800 shadow rounded-lg" : "bg-white shadow rounded-lg"}>
       <div className={`px-6 py-4 border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
