@@ -1,4 +1,4 @@
-import { useAuth } from './utils/auth'; // <-- asegúrate que la ruta sea correcta
+import { useAuth } from './utils/auth'; 
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Login from './components/login';
 import PaginaBase from './pages/paginaBase';
@@ -6,7 +6,7 @@ import { Home } from './pages/Home';
 import { ProtectedRoute } from './components/protectedRoute';
 import { Body } from './components/body';
 import { MexicoMap } from './components/map/MexicoMap';
-import { StateListPage } from './pages/StateListPage'; // <-- Nueva importación
+import { StateListPage } from './pages/StateListPage/Index'; // <-- Nueva importación pq ñiñiñiñiñi pinche react
 
 const AppRoutes = () => {
   const { authenticated } = useAuth(); //  hook dentro del componente

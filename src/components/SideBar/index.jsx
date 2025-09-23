@@ -9,9 +9,8 @@ const navigation = [
   {
     name: 'Consulta',
     icon: <Map size={25} />,
-    href: '/consulta', // Ruta base para la función `isActive`
+    href: '/consulta/mapa', // Ruta base para la función `isActive`
     submenu: [
-      { name: 'Mapa', href: '/consulta/mapa' },
       { name: 'Lista de Estados', href: '/consulta/lista-estados' },
     ],
   },
