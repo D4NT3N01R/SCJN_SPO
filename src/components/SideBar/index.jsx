@@ -1,3 +1,16 @@
+/**
+ * Sidebar principal de la aplicación.
+ *
+ * - Muestra los elementos de navegación definidos en el arreglo `navigation`.
+ * - El elemento "Consulta" tiene un submenú con "Lista de Estados".
+ * - Al hacer clic en "Consulta", se redirige al mapa y se despliega el submenú.
+ * - El submenú se abre automáticamente si la ruta actual inicia con "/consulta".
+ * - El sidebar puede estar expandido o colapsado (controlado por `isOpen`).
+ * - El modo oscuro se aplica a todo el sidebar y a los items según el prop `isDarkMode`.
+ * - La animación del submenú es suave gracias a las clases de transición.
+ * - El botón de flecha permite expandir/colapsar el sidebar.
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Home, Map, ChevronLeft, ChevronRight } from 'lucide-react'; // Se quitó List que no se usaba
 import { SidebarItem } from './SidebarItem';

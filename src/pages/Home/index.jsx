@@ -13,7 +13,28 @@ import DashboardSkeleton from '../../components/dashboard/DashboardLoad';
 import { useOutletContext } from 'react-router-dom'; // <-- Importa el hook
 
 // --- Datos de prueba para que el dashboard se vea bien ---
-
+/**
+ * mockStats es un objeto de ejemplo para mostrar datos en el dashboard.
+ *
+ * Para pasar a una parte funcional, estos datos deben obtenerse desde un backend real.
+ * Ejemplo de implementación:
+ *
+ * 1. Crear un endpoint en el backend (Node.js, Django, etc.) que devuelva las estadísticas:
+ *    - total_jobs
+ *    - completed_jobs
+ *    - failed_jobs
+ *    - running_jobs
+ *    - recent_jobs (array de trabajos recientes)
+ *
+ * 2. En el frontend, usar fetch/axios para llamar al endpoint y actualizar el estado:
+ *    fetch('http://localhost:3001/api/dashboard-stats')
+ *      .then(res => res.json())
+ *      .then(data => setStats(data));
+ *
+ * 3. El backend debe consultar la base de datos y construir el objeto con la misma estructura que mockStats.
+ *
+ * Esto permite que el dashboard muestre datos reales y actualizados.
+ */
 const mockStats = {
   total_jobs: 125,
   completed_jobs: 110,

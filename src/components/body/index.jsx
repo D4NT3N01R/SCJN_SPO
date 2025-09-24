@@ -23,6 +23,48 @@ const gridContainerStyle = {
 };
 
 
+/**
+ * Componente Body
+ *
+ * - Renderiza la tabla de datos de periodicos oficiales por estado usando AgGridTable.
+ * - Permite agregar, editar y eliminar filas desde la UI.
+ * - La base de datos utilizada para demostración es un archivo db.json (simulado con json-server).
+ * - Las operaciones de agregar, editar y eliminar se hacen mediante peticiones HTTP (fetch) a la API REST local.
+ * - Para conectar a un SQL Server real, se debe reemplazar la API REST por un backend (Node.js, .NET, etc.) que interactúe con SQL Server y exponga endpoints equivalentes.
+ * - El modo oscuro se aplica a toda la vista y a los controles.
+ *
+ * Ejemplo base toerico de DJANGO para conexión a SQL Server (Esto es mera suposición, no está implementado ni probado):
+ *
+ * # settings.py
+ * DATABASES = {
+ *     'default': {
+ *         'ENGINE': 'django.db.backends.sql_server.pyodbc',
+ *         'NAME': 'nombre_bd',
+ *         'USER': 'usuario',
+ *         'PASSWORD': 'contraseña',
+ *         'HOST': 'localhost',
+ *         'PORT': '',
+ *         'OPTIONS': {
+ *             'driver': 'ODBC Driver 17 for SQL Server',
+ *         },
+ *     }
+ * }
+ *
+ * # models.py
+ * from django.db import models
+ * class Periodico(models.Model):
+ *     estado = models.CharField(max_length=100)
+ *     año = models.IntegerField()
+ *     mes = models.CharField(max_length=20)
+ *     # ...otros campos...
+ *
+ * # views.py (ejemplo de endpoint)
+ * from django.http import JsonResponse
+ * from .models import Periodico
+ * def periodicos_list(request):
+ *     data = list(Periodico.objects.all().values())
+ *     return JsonResponse(data, safe=False)
+ */
 export function Body() {
   const {stateName} = useParams();
   const { isDarkMode } = useOutletContext?.() || {};

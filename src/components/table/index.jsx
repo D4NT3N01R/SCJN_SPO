@@ -58,6 +58,17 @@ const gridWrapperStyle = {
   
 };
 
+/**
+ * Componente AgGridTable
+ *
+ * - Renderiza una tabla usando AG Grid con soporte para modo claro y oscuro.
+ * - Aplica colores institucionales SCJN en ambos modos.
+ * - Recibe datos, columnas y callback para cambios en celdas.
+ * - Permite ordenar, filtrar, editar y agrupar columnas.
+ * - Incluye panel lateral para columnas y filtros.
+ * - Centra el contenido de celdas y encabezados.
+ * - El modo oscuro se aplica con la clase 'dark-scjn', el claro con 'light-scjn'.
+ */
 export const AgGridTable = ({ 
   isDarkMode, 
   rowData, 
