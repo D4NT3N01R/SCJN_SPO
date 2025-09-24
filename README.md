@@ -10,7 +10,7 @@ La arquitectura de la aplicación está diseñada en base a la limpieza y separa
 
 La entrada principal será `src/main.jsx`, que renderiza el núcleo de la App, que mediante una activación de ruteo del lado del cliente mediante **BrowserRouter**. `App.jsx` es responsable de configurar el contexto global de toda la aplicación. Esto incluye al **QueryClientProvider** del TanStack Query, para manejar la obtención de datos, combinado con **AuthProvider** para soportar la autentificación del usuario a través de todos los componentes.
 
-`src/routes.jsx` maneja centralmente las rutas. Este archivo define todas las direcciones que pueden ser navegadas, incluyendo la ruta pública de `/login` y varias rutas protegidas que constituyen las bases principales de la página. El flujo sería que los usuarios autentificados sean dirigidos a la **PaginaBase**, que es la que se encargaría de "envolver" el layout consistente que tiene la página, creando una experiencia de usuario uniforme.
+`src/routes.jsx` maneja centralmente las rutas. Este archivo define todas las direcciones que pueden ser navegadas, incluyendo la ruta pública de `/login` y varias rutas protegidas que constituyen las bases principales de la página. El flujo sería que los usuarios autentificados sean dirigidos a la **PaginaBase**, que es la que se encargaría de "envolver" el layout consistente que tiene la página, creando una UX uniforme.
 
 ---
 
@@ -20,7 +20,7 @@ La entrada principal será `src/main.jsx`, que renderiza el núcleo de la App, q
 La autentificación es controlada mediante un contexto personalizado dado por `src/utils/auth.jsx`. Este hace que el estado de autentificación del usuario esté definido mediante la disponibilidad de la aplicación. Esto, junto al componente **Login** (`src/components/login/index.jsx`) y el componente **ProtectedRoute** (`src/components/protectedRoute/index.jsx`), envuelven las rutas principales y redireccionan a cualquier usuario que no esté autentificado para que regrese a la página de login.
 
 ### Visualización de la información e interacción
-La intención con el componente **MexicoMap** (`src/components/map/MexicoMap.jsx`) es ofrecer una visualización geográfica de los datos, permitiendo a los usuarios interactuar con un mapa de México para ver información específica de cada estado. Para datos tabulares detallados, la aplicación aprovecha la potente biblioteca **AG Grid** a través de un componente **Table** personalizado (`src/components/table/index.jsx`), que está diseñado para manejar grandes conjuntos de datos con funcionalidades como ordenamiento, filtrado y paginación.
+La intención con el componente **MexicoMap** (`src/components/map/MexicoMap.jsx`) es ofrecer una visualización geográfica de los datos, permitiendo a los usuarios interactuar con un mapa de México para ver información específica de cada estado. Para datos tabulares detallados, la aplicación aprovecha la rota biblioteca **AG Grid** a través de un componente **Table** personalizado (`src/components/table/index.jsx`), que está diseñado para manejar grandes conjuntos de datos con funcionalidades como ordenamiento, filtrado y paginación.
 
 ### Interfaz del Dashboard
 El dashboard principal, renderizado a través de la página **Home** (`src/pages/Home/index.jsx`), es una colección de componentes especializados diseñados para dar una visión general de métricas y acciones clave. Esto incluye **StatsCards** para mostrar estadísticas importantes, una **RecentJobsList** para seguir la actividad reciente y **QuickActions** para un acceso fácil a tareas comunes.
@@ -34,7 +34,7 @@ Una experiencia de usuario consistente se mantiene gracias a un conjunto de comp
 
 Para mantener los componentes de la interfaz limpios y centrados en la presentación, la lógica de conexión y la obtención de datos se abstraen en servicios y hooks personalizados.
 
-El **healthService** (`src/services/healthService.jsx`) (Servicio Igualado al del HTR) encapsula la lógica para hacer llamadas a la API del backend y comprobar su estado. Este servicio es consumido por el hook personalizado **useServerStatus** (`src/hooks/useServerStatus.jsx`), que obtiene periódicamente el estado del servidor y proporciona una interfaz simple y reutilizable para cualquier componente que necesite conocer la salud del servidor.
+El **healthService** (`src/services/healthService.jsx`) (Servicio Igualado al del HTR) encapsula la lógica para hacer llamadas a la API del backend y comprobar su estado. Este servicio es consumido por el hook personalizado **useServerStatus** (`src/hooks/useServerStatus.jsx`), que obtiene periódicamente el estado del servidor y proporciona una interfaz simple y reutilizable para cualquier componente que necesite conocer la salud del servidor (Estos services, no estan en funcionalidad y se encuentran comentados)
 
 ---
 
